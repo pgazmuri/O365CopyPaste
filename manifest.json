@@ -1,0 +1,30 @@
+{
+    "manifest_version": 2,
+    "name": "O365 Copy and Paste",
+    "author": "Pablo Gazmuri",
+    "version": "1.0",
+    "description": "Enables copy and paste only within O365",
+    "permissions": [
+      "*://*.sharepoint.com/*",
+      "*://*.outlook.com/*",
+      "*://teams.microsoft.com/*",
+      "*://*.cas.ms/*"
+    ], 
+    "browser_action": {
+      "default_icon": {
+        "20": "images/icon-20.png",
+        "40": "images/icon-40.png"
+      },
+      "default_title": "CVS CVX"
+    },
+      "content_scripts": [{
+        "matches": [
+            "*://*.sharepoint.com/*",
+            "*://*.outlook.com/*",
+            "*://teams.microsoft.com/*",
+            "*://*.cas.ms/*"
+        ],
+        "js": ["js/content.js"],
+        "run_at": "document_end"
+    }]
+  }
