@@ -24,31 +24,35 @@ function interceptKeys(evt) {
     if (ctrlDown && evt.altKey) return true
 
     // Check for ctrl+c, v and x
-    else if (ctrlDown && c==67) return CVSCVX_Copy(); // c
-    else if (ctrlDown && c==86) return CVSCVX_Paste(); // v
-    else if (ctrlDown && c==88) return CVSCVX_Cut(); // x
+    else if (ctrlDown && c==67) return O365_Copy(); // c
+    else if (ctrlDown && c==86) return O365_Paste(); // v
+    else if (ctrlDown && c==88) return O365_Cut(); // x
 
     // Otherwise allow
     return true
 }
 
-function CVSCVX_Copy(){
+function O365_Copy(){
     
     var copiedData = document.getSelection().toString();
     console.log('copying ' + copiedData);
-    window.localStorage.setItem('CVSCVX_ClipBoard', copiedData );
+    chrome.runtime.sendMessage({cmd: 'copy', value: copiedData});
+
     return false;
 }
 
-function CVSCVX_Paste(){
-    var copiedData = window.localStorage.getItem('CVSCVX_ClipBoard');
-    console.log('pasting ' + copiedData);
-    document.execCommand('insertText', false, copiedData);
+function O365_Paste(){
+    
+    chrome.runtime.sendMessage({cmd: 'paste'}, function(value){
+        console.log('pasting ' + value);
+        document.execCommand('insertText', false, value);
+    });
+    
     return false;
 }
 
-function CVSCVX_Cut(){
-    CVSCVX_Copy();
+function O365_Cut(){
+    O365_Copy();
     document.execCommand('insertText', false, '');
     return false;
 }

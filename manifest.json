@@ -6,7 +6,8 @@
     "description": "Enables copy and paste only within O365",
     "permissions": [
       "*://*.sharepoint.com/*",
-      "*://*.outlook.com/*",
+      "*://*.office365.com/*",
+      "*://*.office.com/*",
       "*://teams.microsoft.com/*",
       "*://*.cas.ms/*"
     ], 
@@ -15,12 +16,18 @@
         "20": "images/icon-20.png",
         "40": "images/icon-40.png"
       },
-      "default_title": "O365 Copy/Paste"
+      "default_title": "O365 Copy/Paste",
+      "visible": false
+    },
+    "background": {
+      "scripts": ["js/background.js"],
+      "persistent": false
     },
       "content_scripts": [{
         "matches": [
             "*://*.sharepoint.com/*",
-            "*://*.outlook.com/*",
+            "*://*.office365.com/*",
+            "*://*.office.com/*",
             "*://teams.microsoft.com/*",
             "*://*.cas.ms/*"
         ],
