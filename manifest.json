@@ -15,7 +15,7 @@
         "20": "images/icon-20.png",
         "40": "images/icon-40.png"
       },
-      "default_title": "CVS CVX"
+      "default_title": "O365 Copy/Paste"
     },
       "content_scripts": [{
         "matches": [
